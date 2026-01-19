@@ -2,7 +2,7 @@
 
 This project uses the [Splinter](https://splinter.readthedocs.io/) Python package to automate internet sites login. As an example we provide code for [freedns.afraid.org](https://freedns.afraid.org), but you can add any other site. Get inspiration from *freedns.py* to make your own script, when done call it from *auto-login-sites.bat*.
 
-The project setup is primarily meant to be used on Windows because it uses an *auto-login-sites.bat* batch file to execute the Python script(s) and to send emails with the bundled `mailsend-go.exe` from <https://github.com/muquit/mailsend-go>.
+The project setup is primarily meant to be used on Windows because it has an *auto-login-sites.bat* batch file to execute the Python script(s) and to send emails with the bundled `mailsend-go.exe` from <https://github.com/muquit/mailsend-go>.
 
 
 ## Installation
@@ -19,7 +19,7 @@ The project setup is primarily meant to be used on Windows because it uses an *a
    py -3.XY -m pip install python-dotenv
    py -3.XY -m pip install "splinter[selenium]"
    ```
-   - Replace `-3.XY` with your Python version.
+   - Replace `3.XY` with your Python version.
 
 3. In project root directory create an `.env` file with the following settings:
 
@@ -40,6 +40,6 @@ The project setup is primarily meant to be used on Windows because it uses an *a
    FREEDNS_PW="secret pw"
    ```
    - Use **double-quotes** around the values if they contain **spaces or special characters**.
-   - Replace `-3.XY` with your Python version.
+   - Replace `3.XY` with your Python version.
 
 4. Setup a Windows Task Scheduler to run *auto-login-sites.bat* daily or weekly. In the Task Scheduler Settings check **"Run whether user is logged on or not"** to hide the batch script window and to hide also the opened browser in case it runs in non-headless mode. **Do not use the SYSTEM account, use your Windows account**, that's because Python is usually installed for a specific user which has user specific packages installed.
