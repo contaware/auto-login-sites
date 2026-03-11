@@ -4,6 +4,7 @@ from splinter import Browser
 import time
 import sys
 import os
+import random
 
 # Init error variable
 err = True
@@ -19,7 +20,7 @@ pw = os.environ.get('FREEDNS_PW')
 # - https://www.useragentstring.com/pages/Chrome/
 # - https://www.useragentstring.com/pages/Firefox/
 # - https://www.whatsmyua.info/
-browser = Browser('chrome', headless=False, user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36')
+browser = Browser('firefox', headless=False, user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:140.0) Gecko/20100101 Firefox/140.0')
 
 # Visit site
 browser.visit('https://freedns.afraid.org/profile/')
@@ -27,9 +28,9 @@ browser.visit('https://freedns.afraid.org/profile/')
 # Fill credentials and logon
 form = browser.find_by_css('form#oPersistForm')
 form.find_by_name('username').fill(user)
-time.sleep(2)
+time.sleep(random.randint(2, 5))
 form.find_by_name('password').fill(pw)
-time.sleep(2)
+time.sleep(random.randint(2, 5))
 form.find_by_name('submit').click()
 
 # Check "Invalid UserID/Pass"
