@@ -18,7 +18,8 @@ pw = os.environ.get('FREEDNS_PW')
 # - Hide browser window with: headless=True
 # - https://www.useragentstring.com/pages/Chrome/
 # - https://www.useragentstring.com/pages/Firefox/
-browser = Browser('chrome', headless=False, user_agent='Mozilla/5.0 (Windows NT 11.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.6998.166 Safari/537.36')
+# - https://www.whatsmyua.info/
+browser = Browser('chrome', headless=False, user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36')
 
 # Visit site
 browser.visit('https://freedns.afraid.org/profile/')
