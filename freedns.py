@@ -9,10 +9,8 @@ import helpers
 # Init email body variable
 body = ''
 
-# Load credentials from .env file
+# Load settings from .env file
 load_dotenv()
-user = os.environ.get('FREEDNS_USER')
-pw = os.environ.get('FREEDNS_PW')
 
 # Login to freedns
 try:
@@ -30,9 +28,9 @@ try:
 
     # Fill credentials and logon
     form = browser.find_by_css('form#oPersistForm')
-    form.find_by_name('username').fill(user)
+    form.find_by_name('username').fill(os.environ.get('FREEDNS_USER'))
     time.sleep(random.randint(2, 5))
-    form.find_by_name('password').fill(pw)
+    form.find_by_name('password').fill(os.environ.get('FREEDNS_PW'))
     time.sleep(random.randint(2, 5))
     form.find_by_name('submit').click()
 
