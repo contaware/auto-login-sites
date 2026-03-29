@@ -1,8 +1,6 @@
 # Auto-login to sites
 
-This project uses the [Splinter](https://splinter.readthedocs.io/) Python package to automate internet sites login. As an example we provide code for [freedns.afraid.org](https://freedns.afraid.org), but you can add any other site. Get inspiration from *freedns.py* to make your own script, when done call it from *auto-login-sites.bat*.
-
-The project setup is primarily meant to be used on Windows because it has an *auto-login-sites.bat* batch file to execute the Python script(s) and to send emails with the bundled `mailsend-go.exe` from <https://github.com/muquit/mailsend-go>.
+This project uses the [Splinter](https://splinter.readthedocs.io/) Python package to automate internet sites login. As an example we provide code for [freedns.afraid.org](https://freedns.afraid.org), but you can add any other site. Get inspiration from *freedns.py* to make your own script.
 
 
 ## Installation
@@ -13,20 +11,16 @@ The project setup is primarily meant to be used on Windows because it has an *au
    git clone https://github.com/contaware/auto-login-sites.git
    ```
 
-2. Install dependencies with py-launcher providing your Python version:
+2. Install dependencies:
 
-   ```bat
-   py -3.XY -m pip install python-dotenv
-   py -3.XY -m pip install "splinter[selenium]"
+   ```bash
+   pip install python-dotenv
+   pip install "splinter[selenium]"
    ```
-   - Replace `3.XY` with your Python version.
 
 3. In project root directory create an `.env` file with the following settings:
 
    ```bash
-   # Python version where the dependencies are installed
-   USE_PYTHON_VER=3.XY
-
    # E-Mail credentials
    EMAIL_TO=john@example.com
    EMAIL_FROM=john@example.com
@@ -40,6 +34,15 @@ The project setup is primarily meant to be used on Windows because it has an *au
    FREEDNS_PW="secret pw"
    ```
    - Use **double-quotes** around the values if they contain **spaces or special characters**.
-   - Replace `3.XY` with your Python version.
 
-4. Setup a Windows Task Scheduler to run *auto-login-sites.bat* daily or weekly. In the Task Scheduler Settings check **"Run whether user is logged on or not"** to hide the batch script window and to hide also the opened browser in case it runs in non-headless mode. **Do not use the SYSTEM account, use your Windows account**, that's because Python is usually installed for a specific user which has user specific packages installed.
+4. Run *freedns.py* periodically:
+   
+   - On Windows setup a Windows Task Scheduler to run daily or weekly. In the Task Scheduler Settings check **"Run only when user is logged on"**. The action should be set to run the script with the full path, something like:
+
+     ```bat
+     pyw.exe "C:\Users\USERNAME\source\repos\auto-login-sites\freedns.py"
+     ```
+
+     Hint: **do not use the SYSTEM account, use your Windows account**, that's because Python is usually installed for a specific user which has user specific packages installed.
+
+   - In Linux use systemd or cron and on macOS you can use cron.
