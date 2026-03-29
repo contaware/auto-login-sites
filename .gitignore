@@ -1,2 +1,3 @@
 .env
+__pycache__/
 /auto-login-sites-log.txt
